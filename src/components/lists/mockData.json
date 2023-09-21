@@ -1,0 +1,135 @@
+[
+    {
+      "id": 1,
+      "title": "Contrato 1",
+      "type": "Alquiler",
+      "address": "Av. Callo 234 CABA",
+      "count": "Cuenta Corriente",
+      "deuda": 1000,
+      "intereses": 200,
+      "total": 1200,
+      "proximoVencimiento": "2023-09-01"
+    },
+    {
+      "id": 2,
+      "title": "Contrato 2",
+      "type": "Alquiler",
+      "address": "Av. Principal 456 CABA",
+      "count": "Comportamiento de Pago",
+      "deuda": 800,
+      "intereses": 150,
+      "total": 950,
+      "proximoVencimiento": "2023-09-15"
+    },
+    {
+      "id": 3,
+      "title": "Contrato 3",
+      "type": "Alquiler",
+      "address": "Av. Callo 234 CABA",
+      "count": "Cuenta Corriente",
+      "deuda": 1000,
+      "intereses": 200,
+      "total": 1200,
+      "proximoVencimiento": "2023-09-01"
+    },
+    {
+      "id": 4,
+      "title": "Contrato 4",
+      "type": "Alquiler",
+      "address": "Av. Principal 456 CABA",
+      "count": "Comportamiento de Pago",
+      "deuda": 800,
+      "intereses": 150,
+      "total": 950,
+      "proximoVencimiento": "2023-09-15"
+    },
+    {
+      "id": 5,
+      "title": "Contrato 5",
+      "type": "Alquiler",
+      "address": "Av. Callo 234 CABA",
+      "count": "Cuenta Corriente",
+      "deuda": 1000,
+      "intereses": 200,
+      "total": 1200,
+      "proximoVencimiento": "2023-09-01"
+    },
+    {
+      "id": 6,
+      "title": "Contrato 6",
+      "type": "Alquiler",
+      "address": "Av. Principal 456 CABA",
+      "count": "Comportamiento de Pago",
+      "deuda": 800,
+      "intereses": 150,
+      "total": 950,
+      "proximoVencimiento": "2023-09-15"
+    },
+    {
+      "id": 7,
+      "title": "Contrato 7",
+      "type": "Alquiler",
+      "address": "Av. Callo 234 CABA",
+      "count": "Cuenta Corriente",
+      "deuda": 1000,
+      "intereses": 200,
+      "total": 1200,
+      "proximoVencimiento": "2023-09-01"
+    },
+    {
+      "id": 8,
+      "title": "Contrato 8",
+      "type": "Alquiler",
+      "address": "Av. Principal 456 CABA",
+      "count": "Caja de Ahorro",
+      "deuda": 800,
+      "intereses": 150,
+      "total": 950,
+      "proximoVencimiento": "2023-09-15"
+    },
+    {
+      "id": 9,
+      "title": "Contrato 9",
+      "type": "Alquiler",
+      "address": "Av. Callo 234 CABA",
+      "count": "Comportamiento de Pago",
+      "deuda": 1000,
+      "intereses": 200,
+      "total": 1200,
+      "proximoVencimiento": "2023-09-01"
+    },
+    {
+      "id": 10,
+      "title": "Contrato 10",
+      "type": "Alquiler",
+      "address": "Av. Principal 456 CABA",
+      "count": "Comportamiento de Pago",
+      "deuda": 800,
+      "intereses": 150,
+      "total": 950,
+      "proximoVencimiento": "2023-09-15"
+    },
+    {
+      "id": 11,
+      "title": "Contrato 11",
+      "type": "Alquiler",
+      "address": "Av. Callo 234 CABA",
+      "count": "Cuenta Corriente",
+      "deuda": 1000,
+      "intereses": 200,
+      "total": 1200,
+      "proximoVencimiento": "2023-09-01"
+    },
+    {
+      "id": 12,
+      "title": "Contrato 12",
+      "type": "Alquiler",
+      "address": "Av. Principal 456 CABA",
+      "count": "Comportamiento de Pago",
+      "deuda": 800,
+      "intereses": 150,
+      "total": 950,
+      "proximoVencimiento": "2023-09-15"
+    }
+  ]
+  
