@@ -8,8 +8,8 @@
       next-icon="mdi-chevron-right"
     />
     <v-row>
-      <v-col v-for="contract in paginatedContracts" :key="contract.id" cols="1" md="12">
-        <v-card class="mb-3" color="primary" @click="redirectToResume(contract)">
+      <v-col v-for="contract in paginatedContracts" :key="contract.id" class="col-12">
+        <v-card color="primary" @click="redirectToResume(contract)">
           <v-card-title>{{ contract.title }}</v-card-title>
           <v-card-subtitle>{{ contract.type }}</v-card-subtitle>
           <v-card-text>{{ contract.address }}</v-card-text>
@@ -28,7 +28,6 @@ export default {
   name: 'ListContract',
   methods: {
     redirectToResume(contract) {
-      console.log("id", contract.id)
       this.$router.push({ name: 'payment', params: { id: contract.id } });
       
     },

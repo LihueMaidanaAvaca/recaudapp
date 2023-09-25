@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
+import LoginView from '../views/LoginView.vue'
 import PaymentSelector from '../views/PaymentSelector.vue'
 
 Vue.use(VueRouter)
@@ -14,8 +14,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/',
-    name: 'about',
-    component: AboutView
+    name: 'Login',
+    component: LoginView
   },
   {
     path: '/payment/:id',
@@ -29,5 +29,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('authToken');
+  if (!token && to.name !== 'Login') {
+    // Si no hay token y no estás en la página de inicio de sesión,
+    // redirige a la página de inicio de sesión
+    next({ name: 'Login' });
+  } else {
+    // Si hay token o estás en la página de inicio de sesión, permite la navegación
+    next();
+  }
+});
 
 export default router
