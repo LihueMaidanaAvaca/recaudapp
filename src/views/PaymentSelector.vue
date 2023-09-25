@@ -108,30 +108,25 @@
                   id="vep-switch"
                 ></v-switch>
                 <v-radio-group
-                v-model="checkboxOptions"
-                v-if="selectedOption === 'VEP'"
+                  v-model="checkboxOptions"
+                  v-if="selectedOption === 'VEP'"
                 >
-                <v-radio label="Link" value="Link">
-                  <img
-                  src="@/assets/linklogo.png"
-                  alt="Link Logo"
-                    aspect-ratio="1.5"
-                    contain
-                  />
-                </v-radio>
-                <v-radio label="Banelco" value="Banelco">
-                  <v-img
-                    src="ruta_de_tu_imagen.jpg"
-                    aspect-ratio="1.5"
-                    contain
-                    ></v-img>
+                  <v-radio label="Link" value="Link">
+                    <template v-slot:label>
+                      <img src="@/assets/linklogo.png" alt="Link Logo" height="50"/>
+                    </template>
                   </v-radio>
-              </v-radio-group>
-            </v-card-subtitle>
+                  <v-radio label="Banelco" value="Banelco">
+                    <template v-slot:label>
+                      <img src="@/assets/banelcologo.png" alt="Banelco Logo" height="30"/>
+                    </template>
+                  </v-radio>
+                </v-radio-group>
+              </v-card-subtitle>
             </v-card-text>
-            
+
             <v-card-actions>
-              <v-btn type="submit" color="primary">Generar</v-btn>
+              <v-btn type="submit" color="primary">Generar Ticket</v-btn>
               <v-btn @click="showForm = false" color="error">Cancelar</v-btn>
             </v-card-actions>
           </v-form>
