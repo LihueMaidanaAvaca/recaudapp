@@ -7,22 +7,16 @@
       prev-icon="mdi-chevron-left"
       next-icon="mdi-chevron-right"
     />
-    <v-list>
-      <v-list-item v-for="contract in paginatedContracts" :key="contract.id" @click="redirectToResume(contract)">
-        <v-card class="mb-3" color="primary" >
-          <v-row align-item="center">
-            <v-col cols="9">
-              <v-card-title>{{ contract.title }}</v-card-title>
-              <v-card-subtitle>{{ contract.type }}</v-card-subtitle>
-              <v-card-text>{{ contract.address }}</v-card-text>
-            <v-col cols="12" class="text-right">
-              <v-card-subtitle>{{ contract.count }}</v-card-subtitle>
-            </v-col>
-            </v-col>
-          </v-row>
+    <v-row>
+      <v-col v-for="contract in paginatedContracts" :key="contract.id" cols="1" md="12">
+        <v-card class="mb-3" color="primary" @click="redirectToResume(contract)">
+          <v-card-title>{{ contract.title }}</v-card-title>
+          <v-card-subtitle>{{ contract.type }}</v-card-subtitle>
+          <v-card-text>{{ contract.address }}</v-card-text>
+          <v-card-subtitle>{{ contract.count }}</v-card-subtitle>
         </v-card>
-      </v-list-item>
-    </v-list>
+      </v-col>
+    </v-row>
     
   </div>
 </template>
@@ -35,7 +29,7 @@ export default {
   methods: {
     redirectToResume(contract) {
       console.log("id", contract.id)
-      this.$router.push({ name: 'PaymentSelector', params: { id: contract.id } });
+      this.$router.push({ name: 'payment', params: { id: contract.id } });
       
     },
   },

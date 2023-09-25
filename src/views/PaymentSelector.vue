@@ -54,37 +54,30 @@
       </v-row>
     </v-card>
     <v-dialog v-model="showForm" max-width="500">
-      <v-card>
-      <v-col> </v-col>
-      <v-form v-model="valid">
-        <v-text-field
-        :value="due"
-        :rules="dateRules"
-        :counter="10"
-        label="Fecha aproximada de pago"
-        required
-        hide-details
-        >
-      </v-text-field>
-      <v-text-field
-      v-model="payment"
-      :rules="nameRules"
-          :counter="10"
-          label="Cifra a pagar"
-          required
-          hide-details
-        ></v-text-field>
-        <v-switch
-          v-model="selectedOption"
-          hide-details
-          true-value="Boleta"
-          false-value="VEP"
-          :label="`Pagara con ${selectedOption}`"
-          id="vep-switch"
-          ></v-switch>
-          <v-btn type="submit" block class="mt-2">Generar Ticket</v-btn>
-        </v-form>
-      </v-card>
+      <v-menu
+        ref="menu"
+        :close-on-content-click="false"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="date"
+            label="Fecha de Pago"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+            v-model="date"
+            :max="maxDate"
+            :min="minDate"
+            @change="save"
+          ></v-date-picker>
+      </v-menu>
     </v-dialog>
   </v-container>
   </template>
@@ -110,6 +103,10 @@ export default {
       showForm: false,
       selectedOption: "Boleta",
       due: null,
+      dialog: false,
+      date: new Date().toISOString().substr(0, 10),
+      minDate: new Date().toISOString().substr(0, 10), // Fecha actual
+      maxDate: this.calculateMaxDate(), // Fecha máxima
       panels: [
         { label: "Pago Independiente", isSelected: false },
         // { label: "Pago en cuotas fijas", isSelected: false },
@@ -140,6 +137,16 @@ export default {
     },
     continueToGenerator() {
       this.showForm = true;
+    },
+    calculateMaxDate() {
+      const today = new Date();
+      const nextMonth = new Date(today);
+      nextMonth.setMonth(nextMonth.getMonth() + 1);
+      return nextMonth.toISOString().substr(0, 10);
+    },
+    save() {
+      // Aquí puedes realizar acciones cuando se selecciona una fecha
+      this.dialog = false; // Cierra el modal
     },
   },
 };
