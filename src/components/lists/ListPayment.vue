@@ -10,7 +10,7 @@
       <li v-for="(pago, index) in pagos" :key="index">
         <span class="payment-date">{{ pago.fecha }}</span>
         <span class="payment-type">{{ pago.tipo }}</span>
-        <span class="payment-amount">{{ pago.importe }}</span>
+        <span class="payment-amount">${{ pago.importe }}</span>
         <span class="payment-state">{{ pago.state }}</span>
       </li>
     </ul>

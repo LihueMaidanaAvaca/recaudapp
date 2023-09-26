@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import PaymentSelector from '../views/PaymentSelector.vue'
 import HistoryView from '../views/HistoryView.vue'
+import ResponseView from '../views/ResponseView.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes: Array<RouteConfig> = [
     path: '/payment/:id',
     name: 'PaymentSelector',
     component: PaymentSelector
+  },
+  {
+    path: '/boletaSuccess',
+    name: 'ResponseView',
+    component: ResponseView
   }
 ]
 

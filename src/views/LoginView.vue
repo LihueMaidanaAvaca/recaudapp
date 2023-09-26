@@ -6,7 +6,7 @@
           <img class="login-image" src="@/assets/logoaabe2.png" alt="Login Image" />
         </div>
         <v-form class="login-form" @submit.prevent="handleSubmit">
-          <v-text-field v-model="cuil" label="CUIT/CUIL"></v-text-field>
+          <v-text-field v-model="email" label="email de usuario"></v-text-field>
           <v-text-field v-model="password" label="Password" type="password"></v-text-field>
           <v-btn type="submit" color="cyan darken-1">Login</v-btn>
         </v-form>
@@ -25,7 +25,7 @@
 export default {
   data() {
     return {
-      cuil: '',
+      email: '@bienesdelestado.gob.ar',
       password: ''
     }
   },
@@ -51,7 +51,7 @@ export default {
         // Supongamos que el servidor devuelve un token o algún indicador de autenticación exitosa
         // const isAuthenticated = response.data.isAuthenticated;
 
-        const isAuthenticated = this.cuil === this.password
+        const isAuthenticated = this.email === this.password
         //   const storedPayments = localStorage.getItem("payments");
         // if (!storedPayments) {
         //   // Si no están guardados, crea un ejemplo de array de pagos (reemplaza esto con tus datos reales)

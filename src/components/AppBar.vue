@@ -53,9 +53,9 @@ export default {
       if (!storedPayments) {
         // Si no están guardados, crea un ejemplo de array de pagos (reemplaza esto con tus datos reales)
         const examplePayments = [
-          { fecha: '2023-08-15', tipo: 'VEP', importe: '$120000.00', state: "Pendiente" },
-          { fecha: '2023-08-14', tipo: 'Boleta', importe: '$2500000.00', state: "Registrado" },
-          { fecha: '2023-08-13', tipo: 'VEP', importe: '$180000.50', state: "Pendiente" },
+          { fecha: '2023-08-15', tipo: 'VEP', importe: '120000.00', state: "Pendiente" },
+          { fecha: '2023-08-14', tipo: 'Boleta', importe: '2500000.00', state: "Registrado" },
+          { fecha: '2023-08-13', tipo: 'VEP', importe: '180000.50', state: "Pendiente" },
         ];
 
         // Guardar el array de pagos en el almacenamiento local

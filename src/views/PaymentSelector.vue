@@ -4,19 +4,15 @@
     <v-container fluid class="col-md-6">
       <v-card class="mb-3" elevation="3">
         <v-card-title>Resumen</v-card-title>
-        <v-row>
-          <v-col cols="6">
+                <v-row>
+          <!-- Dos columnas en pantallas pequeñas y grandes -->
+          <v-col cols="12" sm="6">
             <v-card-subtitle>Deuda: {{ contract.deuda }}</v-card-subtitle>
-            <v-card-subtitle
-              >Intereses: {{ contract.intereses }}</v-card-subtitle
-            >
-            <v-card-subtitle>Total: {{ contract.total }}</v-card-subtitle>
+            <v-card-subtitle>Intereses: {{ contract.intereses }}</v-card-subtitle>
           </v-col>
-          <v-col cols="8">
-            <v-card-subtitle
-              >Próximo Vencimiento:
-              {{ contract.proximoVencimiento }}</v-card-subtitle
-            >
+          <v-col cols="12" sm="6">
+            <v-card-subtitle>Total: {{ contract.total }}</v-card-subtitle>
+            <v-card-subtitle>Próximo Vencimiento: {{ contract.proximoVencimiento }}</v-card-subtitle>
           </v-col>
         </v-row>
       </v-card>
@@ -61,7 +57,7 @@
 
       <v-dialog v-model="showForm" max-width="500">
         <v-card>
-          <v-form @submit.prevent="save">
+          <v-form @submit.prevent="savePayment">
             <v-card-text>
               <!-- Campo de entrada para la fecha -->
               <v-menu
@@ -202,9 +198,35 @@ export default {
       nextMonth.setMonth(nextMonth.getMonth() + 1);
       return nextMonth.toISOString().substr(0, 10);
     },
-    save() {
-      // Aquí puedes realizar acciones cuando se selecciona una fecha
-      this.dialog = false; // Cierra el modal
+    savePayment() {
+      // Crea un nuevo objeto con los datos ingresados
+      const nuevoPago = {
+        fecha: this.date,
+        tipo: this.selectedOption,
+        importe: this.monto, // Formatea el monto con dos decimales
+        state: "Pendiente", // Establece el estado como "Pendiente" por defecto
+      };
+
+      // Obtiene el array de payments del almacenamiento local
+      const paymentsJSON = localStorage.getItem('payments');
+      let payments = [];
+      if (paymentsJSON) {
+        payments = JSON.parse(paymentsJSON);
+      }
+
+      // Agrega el nuevo pago al array de payments
+      payments.push(nuevoPago);
+
+      // Guarda el array actualizado en el almacenamiento local
+      localStorage.setItem('payments', JSON.stringify(payments));
+
+      // Cierra el modal
+      if (this.selectedOption === "Boleta") {
+        // Redirige a PaymentSuccess
+        this.$router.push({ name: "ResponseView" });
+      } else {
+        // Otra lógica si no es "Boleta"
+      }
     },
   },
 };
