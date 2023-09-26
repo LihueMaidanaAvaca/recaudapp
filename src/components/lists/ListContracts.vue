@@ -28,7 +28,7 @@ export default {
   name: 'ListContract',
   methods: {
     redirectToResume(contract) {
-      this.$router.push({ name: 'payment', params: { id: contract.id } });
+      this.$router.push({ name: 'PaymentSelector', params: { id: contract.id } });
       
     },
   },

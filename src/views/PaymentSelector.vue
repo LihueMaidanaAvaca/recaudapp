@@ -118,7 +118,7 @@
                   </v-radio>
                   <v-radio label="Banelco" value="Banelco">
                     <template v-slot:label>
-                      <img src="@/assets/banelcologo.png" alt="Banelco Logo" height="30"/>
+                      <img src="@/assets/banelcologo.png" alt="Banelco Logo" height="52"/>
                     </template>
                   </v-radio>
                 </v-radio-group>

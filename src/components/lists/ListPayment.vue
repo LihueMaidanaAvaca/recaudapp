@@ -1,9 +1,10 @@
 <template>
-   <div class="payments-banner">
+  <div>
+    <div class="payments-banner">
       <span class="payment-date">Fecha</span>
       <span class="payment-type">VEP/Boleta</span>
       <span class="payment-amount">Importe</span>
-      <span class="payment-amount">Estado</span>
+      <span class="payment-state">Estado</span>
     </div>
     <ul class="payments-list">
       <li v-for="(pago, index) in pagos" :key="index">
@@ -13,6 +14,7 @@
         <span class="payment-state">{{ pago.state }}</span>
       </li>
     </ul>
+  </div>
 </template>
 
 <script>
@@ -21,12 +23,15 @@ export default {
   name: 'ListPayment',
   data() {
     return {
-      pagos: [
-        { fecha: '2023-08-15', tipo: 'VEP', importe: '$120.00' , state: "Pendiente"},
-        { fecha: '2023-08-14', tipo: 'Boleta', importe: '$250.00', state: "Registrado" },
-        { fecha: '2023-08-13', tipo: 'VEP', importe: '$180.50', state: "Pendiente"},
-      ],
+      pagos: [],
     };
+  },
+  created() {
+    // Cargamos el array de payments desde el almacenamiento local
+    const paymentsJSON = localStorage.getItem('payments');
+    if (paymentsJSON) {
+      this.pagos = JSON.parse(paymentsJSON);
+    }
   },
 };
 </script>
