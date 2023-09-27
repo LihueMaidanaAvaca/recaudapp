@@ -80,6 +80,7 @@
                   v-model="date"
                   :max="maxDate"
                   :min="minDate"
+                  color="primary"
                 ></v-date-picker>
               </v-menu>
 
@@ -157,6 +158,7 @@ export default {
       selectedDate: null,
       showForm: false,
       selectedOption: "Boleta",
+      checkboxOptions: null,
       due: null,
       dialog: false,
       date: new Date().toISOString().substr(0, 10),

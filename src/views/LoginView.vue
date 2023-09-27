@@ -41,6 +41,9 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      console.log('Email:', this.email);
+      console.log('Password:', this.password);
+
       try {
         // Simular una solicitud de autenticación al servidor (reemplaza con tu lógica real)
         // await axios.post('/api/login', {
@@ -51,7 +54,7 @@ export default {
         // Supongamos que el servidor devuelve un token o algún indicador de autenticación exitosa
         // const isAuthenticated = response.data.isAuthenticated;
 
-        const isAuthenticated = this.email === this.password
+        const isAuthenticated = "password" === this.password
         //   const storedPayments = localStorage.getItem("payments");
         // if (!storedPayments) {
         //   // Si no están guardados, crea un ejemplo de array de pagos (reemplaza esto con tus datos reales)
