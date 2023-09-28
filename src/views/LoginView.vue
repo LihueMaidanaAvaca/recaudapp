@@ -3,11 +3,26 @@
     <v-row justify="center" :align="'end'" class="mt-6">
       <v-col cols="12" sm="8" md="6">
         <div class="login-image-container text-center">
-          <img class="login-image" src="@/assets/logoaabe2.png" alt="Login Image" />
+          <img
+            class="login-image"
+            src="@/assets/logoaabe2.png"
+            alt="Login Image"
+          />
         </div>
-        <v-form class="login-form" @submit.prevent="handleSubmit">
-          <v-text-field v-model="email" label="email de usuario"></v-text-field>
-          <v-text-field v-model="password" label="Password" type="password"></v-text-field>
+        <v-form ref="loginForm" class="login-form" @submit.prevent="handleSubmit">
+          <v-text-field
+            v-model="email"
+            label="Email de usuario"
+            required
+            :rules="[v => !!v || 'El email es requerido', v => /.+@.+\..+/.test(v) || 'El email debe ser válido']"
+          ></v-text-field>
+          <v-text-field
+            v-model="password"
+            label="Password"
+            type="password"
+            required
+            :rules="[v => !!v || 'La contraseña es requerida']"
+          ></v-text-field>
           <v-btn type="submit" color="cyan darken-1">Login</v-btn>
         </v-form>
         <router-link to="home" class="link" style="color: #00bcd4">
@@ -25,24 +40,24 @@
 export default {
   data() {
     return {
-      email: '@bienesdelestado.gob.ar',
-      password: ''
-    }
+      email: "@bienesdelestado.gob.ar",
+      password: "",
+    };
   },
   computed: {
     hasAuthToken() {
-      return localStorage.getItem('authToken') !== null
-    }
+      return localStorage.getItem("authToken") !== null;
+    },
   },
   created() {
     if (this.hasAuthToken) {
-      this.redirectToHome()
+      this.redirectToHome();
     }
   },
   methods: {
     async handleSubmit() {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
+      console.log("Email:", this.email);
+      console.log("Password:", this.password);
 
       try {
         // Simular una solicitud de autenticación al servidor (reemplaza con tu lógica real)
@@ -53,44 +68,33 @@ export default {
 
         // Supongamos que el servidor devuelve un token o algún indicador de autenticación exitosa
         // const isAuthenticated = response.data.isAuthenticated;
-
-        const isAuthenticated = "password" === this.password
-        //   const storedPayments = localStorage.getItem("payments");
-        // if (!storedPayments) {
-        //   // Si no están guardados, crea un ejemplo de array de pagos (reemplaza esto con tus datos reales)
-        //   const examplePayments = [
-        //     { fecha: '2023-08-15', tipo: 'VEP', importe: '$120.00', state: "Pendiente" },
-        //     { fecha: '2023-08-14', tipo: 'Boleta', importe: '$250.00', state: "Registrado" },
-        //     { fecha: '2023-08-13', tipo: 'VEP', importe: '$180.50', state: "Pendiente" },
-        //   ];
-
-        //   // Guardar el array de pagos en el almacenamiento local
-        //   localStorage.setItem("payments", JSON.stringify(examplePayments));
-        // }
-
+        if (this.$refs.loginForm.validate()) {
+        const isAuthenticated = "password" === this.password;
+        
         if (isAuthenticated) {
           // Simulación de un token (reemplaza con el token real del servidor)
-          const authToken = 'mi-token-secreto'
+          const authToken = "mi-token-secreto";
 
           // Guardar el token en el localStorage
-          localStorage.setItem('authToken', authToken)
+          localStorage.setItem("authToken", authToken);
 
           // Redirigir a la página de inicio después de un inicio de sesión exitoso
-          this.$router.push('/home')
+          this.$router.push("/home");
         } else {
           // Manejar caso de autenticación fallida si es necesario
           // Por ejemplo, mostrar un mensaje de error al usuario
         }
-      } catch (error) {
-        console.error('Error de autenticación:', error)
+      }
+     } catch (error) {
+        console.error("Error de autenticación:", error);
         // Manejar errores de autenticación si es necesario
       }
     },
     redirectToHome() {
-      this.$router.push('/home') // Cambia '/home' por tu ruta de inicio
-    }
-  }
-}
+      this.$router.push("/home"); // Cambia '/home' por tu ruta de inicio
+    },
+  },
+};
 </script>
 
 
@@ -122,10 +126,10 @@ export default {
 
 @keyframes fadeLogo {
   0% {
-    opacity: 0; /* Comienza con opacidad completa (100%) */
+    opacity: 0; 
   }
   100% {
-    opacity: 1; /* Finaliza con opacidad 0 (totalmente transparente) */
+    opacity: 1; 
   }
 }
 </style>

@@ -4,15 +4,20 @@
     <v-container fluid class="col-md-6">
       <v-card class="mb-3" elevation="3">
         <v-card-title>Resumen</v-card-title>
-                <v-row>
+        <v-row>
           <!-- Dos columnas en pantallas pequeñas y grandes -->
           <v-col cols="12" sm="6">
             <v-card-subtitle>Deuda: {{ contract.deuda }}</v-card-subtitle>
-            <v-card-subtitle>Intereses: {{ contract.intereses }}</v-card-subtitle>
+            <v-card-subtitle
+              >Intereses: {{ contract.intereses }}</v-card-subtitle
+            >
           </v-col>
           <v-col cols="12" sm="6">
             <v-card-subtitle>Total: {{ contract.total }}</v-card-subtitle>
-            <v-card-subtitle>Próximo Vencimiento: {{ contract.proximoVencimiento }}</v-card-subtitle>
+            <v-card-subtitle
+              >Próximo Vencimiento:
+              {{ contract.proximoVencimiento }}</v-card-subtitle
+            >
           </v-col>
         </v-row>
       </v-card>
@@ -57,7 +62,7 @@
 
       <v-dialog v-model="showForm" max-width="500">
         <v-card>
-          <v-form @submit.prevent="savePayment">
+          <v-form @submit.native.prevent="savePayment">
             <v-card-text>
               <!-- Campo de entrada para la fecha -->
               <v-menu
@@ -91,6 +96,11 @@
                 prepend-icon="mdi-currency-usd"
                 type="number"
                 required
+                :rules="[
+                  (v) => !!v || 'El monto es requerido',
+                  (v) =>
+                    /^\d+(\.\d{1,2})?$/.test(v) || 'Formato de monto inválido',
+                ]"
               ></v-text-field>
 
               <v-card-subtitle
@@ -110,12 +120,20 @@
                 >
                   <v-radio label="Link" value="Link">
                     <template v-slot:label>
-                      <img src="@/assets/linklogo.png" alt="Link Logo" height="50"/>
+                      <img
+                        src="@/assets/linklogo.png"
+                        alt="Link Logo"
+                        height="50"
+                      />
                     </template>
                   </v-radio>
                   <v-radio label="Banelco" value="Banelco">
                     <template v-slot:label>
-                      <img src="@/assets/banelcologo.png" alt="Banelco Logo" height="52"/>
+                      <img
+                        src="@/assets/banelcologo.png"
+                        alt="Banelco Logo"
+                        height="52"
+                      />
                     </template>
                   </v-radio>
                 </v-radio-group>
@@ -201,6 +219,11 @@ export default {
       return nextMonth.toISOString().substr(0, 10);
     },
     savePayment() {
+      if (!this.monto) {
+        // Muestra un mensaje de error o realiza alguna acción apropiada
+        console.error("El monto es requerido. No se puede generar el pago.");
+        return;
+      }
       // Crea un nuevo objeto con los datos ingresados
       const nuevoPago = {
         fecha: this.date,
@@ -210,7 +233,7 @@ export default {
       };
 
       // Obtiene el array de payments del almacenamiento local
-      const paymentsJSON = localStorage.getItem('payments');
+      const paymentsJSON = localStorage.getItem("payments");
       let payments = [];
       if (paymentsJSON) {
         payments = JSON.parse(paymentsJSON);
@@ -220,7 +243,7 @@ export default {
       payments.push(nuevoPago);
 
       // Guarda el array actualizado en el almacenamiento local
-      localStorage.setItem('payments', JSON.stringify(payments));
+      localStorage.setItem("payments", JSON.stringify(payments));
 
       // Cierra el modal
       if (this.selectedOption === "Boleta") {
