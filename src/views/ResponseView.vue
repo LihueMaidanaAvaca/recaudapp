@@ -37,7 +37,6 @@ export default {
   
 <style scoped>
 .response-card {
-    background-color: #c9f2fb;
     /* Fondo celeste */
     text-align: center;
     padding: 24px;

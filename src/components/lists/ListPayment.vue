@@ -2,7 +2,7 @@
   <div>
     <div class="payments-banner">
       <span class="payment-date">Fecha</span>
-      <span class="payment-type">VEP/Boleta</span>
+      <span class="payment-type">Tipo</span>
       <span class="payment-amount">Importe</span>
       <span class="payment-state">Estado</span>
     </div>
