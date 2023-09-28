@@ -4,7 +4,8 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import PaymentSelector from '../views/PaymentSelector.vue'
 import HistoryView from '../views/HistoryView.vue'
-import ResponseView from '../views/ResponseView.vue'
+import BoletaResponse from '../components/responses/BoletaResponse.vue'
+import VepResponse from '../components/responses/VepResponse.vue'
 
 Vue.use(VueRouter)
 
@@ -30,9 +31,14 @@ const routes: Array<RouteConfig> = [
     component: PaymentSelector
   },
   {
-    path: '/boletaSuccess',
-    name: 'ResponseView',
-    component: ResponseView
+    path: '/boleta',
+    name: 'BoletaResponse',
+    component: BoletaResponse
+  },
+  {
+    path: '/VEP',
+    name: 'VepResponse',
+    component: VepResponse
   }
 ]
 

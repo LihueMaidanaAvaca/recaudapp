@@ -117,6 +117,7 @@
                 <v-radio-group
                   v-model="checkboxOptions"
                   v-if="selectedOption === 'VEP'"
+                  :rules="[v => !!checkboxOptions || 'Seleccione una opción']"
                 >
                   <v-radio label="Link" value="Link">
                     <template v-slot:label>
@@ -246,10 +247,12 @@ export default {
       localStorage.setItem("payments", JSON.stringify(payments));
 
       // Cierra el modal
-      if (this.selectedOption === "Boleta") {
-        // Redirige a PaymentSuccess
-        this.$router.push({ name: "ResponseView" });
-      } else {
+      if (this.selectedOption === "Boleta") { // Actualiza isBoleta ant
+        this.$router.push({ name: "BoletaResponse"});
+      } if (this.selectedOption === "VEP") { // Actualiza isBoleta ant
+        this.$router.push({ name: "VepResponse"});
+      } 
+      else {
         // Otra lógica si no es "Boleta"
       }
     },

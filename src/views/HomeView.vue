@@ -1,10 +1,10 @@
 <template>
   <div>
     <app-bar></app-bar>
-    <v-row justify="center" class="mt-6">
+    <v-row justify="center" class="mt-13">
       <v-col cols="12" sm="8" md="6">
         <v-sheet elevation="0" class="pa-4">
-          <h2 class="headline text-center sticky-header">
+          <h2 class="text-center" >
             Seleccione el contrato que desee abonar
           </h2>
         </v-sheet>

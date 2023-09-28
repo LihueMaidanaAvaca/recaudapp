@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="primary" height="64">
+  <v-app-bar color="primary" height="64" fixed>
     <v-toolbar-title>{{ userName }}</v-toolbar-title>
 
     <v-spacer></v-spacer>

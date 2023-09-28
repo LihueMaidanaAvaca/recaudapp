@@ -9,19 +9,26 @@
             alt="Login Image"
           />
         </div>
-        <v-form ref="loginForm" class="login-form" @submit.prevent="handleSubmit">
+        <v-form
+          ref="loginForm"
+          class="login-form"
+          @submit.prevent="handleSubmit"
+        >
           <v-text-field
             v-model="email"
             label="Email de usuario"
             required
-            :rules="[v => !!v || 'El email es requerido', v => /.+@.+\..+/.test(v) || 'El email debe ser válido']"
+            :rules="[
+              (v) => !!v || 'El email es requerido',
+              (v) => /.+@.+\..+/.test(v) || 'El email debe ser válido',
+            ]"
           ></v-text-field>
           <v-text-field
             v-model="password"
             label="Password"
             type="password"
             required
-            :rules="[v => !!v || 'La contraseña es requerida']"
+            :rules="[(v) => !!v || 'La contraseña es requerida']"
           ></v-text-field>
           <v-btn type="submit" color="cyan darken-1">Login</v-btn>
         </v-form>
@@ -42,6 +49,7 @@ export default {
     return {
       email: "@bienesdelestado.gob.ar",
       password: "",
+      showInitialColor: true,
     };
   },
   computed: {
@@ -53,6 +61,9 @@ export default {
     if (this.hasAuthToken) {
       this.redirectToHome();
     }
+    setTimeout(() => {
+      this.showInitialColor = false;
+    }, 500); // Ajusta el tiempo según la duración de tu animación
   },
   methods: {
     async handleSubmit() {
@@ -69,23 +80,23 @@ export default {
         // Supongamos que el servidor devuelve un token o algún indicador de autenticación exitosa
         // const isAuthenticated = response.data.isAuthenticated;
         if (this.$refs.loginForm.validate()) {
-        const isAuthenticated = "password" === this.password;
-        
-        if (isAuthenticated) {
-          // Simulación de un token (reemplaza con el token real del servidor)
-          const authToken = "mi-token-secreto";
+          const isAuthenticated = "password" === this.password;
 
-          // Guardar el token en el localStorage
-          localStorage.setItem("authToken", authToken);
+          if (isAuthenticated) {
+            // Simulación de un token (reemplaza con el token real del servidor)
+            const authToken = "mi-token-secreto";
 
-          // Redirigir a la página de inicio después de un inicio de sesión exitoso
-          this.$router.push("/home");
-        } else {
-          // Manejar caso de autenticación fallida si es necesario
-          // Por ejemplo, mostrar un mensaje de error al usuario
+            // Guardar el token en el localStorage
+            localStorage.setItem("authToken", authToken);
+
+            // Redirigir a la página de inicio después de un inicio de sesión exitoso
+            this.$router.push("/home");
+          } else {
+            // Manejar caso de autenticación fallida si es necesario
+            // Por ejemplo, mostrar un mensaje de error al usuario
+          }
         }
-      }
-     } catch (error) {
+      } catch (error) {
         console.error("Error de autenticación:", error);
         // Manejar errores de autenticación si es necesario
       }
@@ -126,10 +137,10 @@ export default {
 
 @keyframes fadeLogo {
   0% {
-    opacity: 0; 
+    opacity: 0;
   }
   100% {
-    opacity: 1; 
+    opacity: 1;
   }
 }
 </style>
