@@ -118,6 +118,7 @@
                   v-model="checkboxOptions"
                   v-if="selectedOption === 'VEP'"
                   :rules="[v => !!checkboxOptions || 'Seleccione una opción']"
+                  required
                 >
                   <v-radio label="Link" value="Link">
                     <template v-slot:label>
@@ -178,6 +179,7 @@ export default {
       showForm: false,
       selectedOption: "Boleta",
       checkboxOptions: null,
+      isCheckboxOptionsValid: false,
       due: null,
       dialog: false,
       date: new Date().toISOString().substr(0, 10),
@@ -225,6 +227,10 @@ export default {
         console.error("El monto es requerido. No se puede generar el pago.");
         return;
       }
+      if (this.selectedOption === "VEP" && !this.checkboxOptions) {
+        console.error("Debe seleccionar 'Link' o 'Banelco' para VEP.");
+        return;
+      }
       // Crea un nuevo objeto con los datos ingresados
       const nuevoPago = {
         fecha: this.date,
@@ -247,12 +253,14 @@ export default {
       localStorage.setItem("payments", JSON.stringify(payments));
 
       // Cierra el modal
-      if (this.selectedOption === "Boleta") { // Actualiza isBoleta ant
-        this.$router.push({ name: "BoletaResponse"});
-      } if (this.selectedOption === "VEP") { // Actualiza isBoleta ant
-        this.$router.push({ name: "VepResponse"});
-      } 
-      else {
+      if (this.selectedOption === "Boleta") {
+        // Actualiza isBoleta ant
+        this.$router.push({ name: "BoletaResponse" });
+      }
+      if (this.selectedOption === "VEP") {
+        // Actualiza isBoleta ant
+        this.$router.push({ name: "VepResponse" });
+      } else {
         // Otra lógica si no es "Boleta"
       }
     },
