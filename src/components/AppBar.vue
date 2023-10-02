@@ -3,6 +3,9 @@
     <v-toolbar-title>{{ userName }}</v-toolbar-title>
 
     <v-spacer></v-spacer>
+    <v-switch
+      v-model="isDarkMode"
+    ></v-switch>
     <div>
       <v-tabs background-color="primary">
         <v-tab @click="loadPayments">Pagos</v-tab>
@@ -40,14 +43,21 @@ export default {
   },
 
   computed: {
-    isDark() {
-      return this.$vuetify.theme.dark ? "dark" : "light";
+    isDarkMode: {
+      get() {
+        return this.$vuetify.theme.dark;
+      },
+      set(value) {
+        this.$vuetify.theme.dark = value;
+        // Guardar el estado del tema en localStorage
+        localStorage.setItem("theme", value ? "dark" : "light");
+        console.log("guardar tema")
+      },
     },
   },
 
   methods: {
     loadPayments() {
-      console.log('se activo la funcion')
       // Verificar si los pagos ya están guardados en el almacenamiento local
       const storedPayments = localStorage.getItem("payments");
       if (!storedPayments) {
