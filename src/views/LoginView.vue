@@ -30,9 +30,9 @@
             required
             :rules="[(v) => !!v || 'La contraseña es requerida']"
           ></v-text-field>
-          <v-btn type="submit" color="cyan darken-1">Login</v-btn>
+          <v-btn type="submit" color="primary">Login</v-btn>
         </v-form>
-        <router-link to="home" class="link" style="color: #00bcd4">
+        <router-link to="home" class="link" style="color: primary">
           Recuperar contraseña
         </router-link>
       </v-col>

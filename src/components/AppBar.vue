@@ -1,6 +1,12 @@
 <template>
   <v-app-bar color="primary" height="64" fixed>
-    <v-toolbar-title>{{ userName }}</v-toolbar-title>
+    <v-avatar
+      color="teal"
+      size="48"
+    >
+      <span class="white--text text-h5">T</span>
+    </v-avatar>
+    
 
     <v-spacer></v-spacer>
     <v-switch
