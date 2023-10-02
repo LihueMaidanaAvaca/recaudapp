@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    
     <v-main>
       <router-view />
     </v-main>
@@ -15,8 +16,6 @@ export default Vue.extend({
   components: {
   },
 
-  data: () => ({
-    //
-  }),
+  
 });
 </script>

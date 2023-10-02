@@ -10,7 +10,7 @@
 
     <v-spacer></v-spacer>
     <v-switch
-      v-model="isDarkMode"
+      v-model="isDarkMode" class="mt-5" color="#0b3f61" :append-icon="isDarkMode ? 'mdi-weather-night' : 'mdi-weather-sunny'"
     ></v-switch>
     <div>
       <v-tabs background-color="primary">
