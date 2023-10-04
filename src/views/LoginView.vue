@@ -91,6 +91,7 @@ export default {
 
             // Redirigir a la página de inicio después de un inicio de sesión exitoso
             this.$router.push("/home");
+            window.location.reload()
           } else {
             // Manejar caso de autenticación fallida si es necesario
             // Por ejemplo, mostrar un mensaje de error al usuario

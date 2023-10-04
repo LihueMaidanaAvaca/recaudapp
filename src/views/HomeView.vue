@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-bar></app-bar>
+    <!-- <app-bar></app-bar> -->
     <v-row justify="center" class="mt-13">
       <v-col cols="12" sm="8" md="6">
         <v-sheet elevation="0" class="pa-4">
@@ -20,12 +20,12 @@
 
 <script>
 import ListContract from '@/components/lists/ListContracts.vue';
-import AppBar from '@/components/AppBar.vue';
+// import AppBar from '@/components/AppBar.vue';
 
 export default {
   components: {
     ListContract,
-    AppBar
+    // AppBar
   }
 }
 </script>
