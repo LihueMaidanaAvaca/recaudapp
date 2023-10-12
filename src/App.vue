@@ -41,9 +41,9 @@
       </v-dialog>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary right>
-      <v-list nav dense>
-        <v-list-item-group active-class="deep-purple--text text--accent-4">
+    <v-navigation-drawer v-model="drawer" app clipped temporary right fixed>
+      <v-list nav fixed>
+        <v-list-item-group active-class="primary--text text--accent-4">
           <v-list-item>
             <v-list-item-title @click="goHome">Home</v-list-item-title>
           </v-list-item>
@@ -124,7 +124,7 @@ export default Vue.extend({
       console.log("authToken:", !!authToken);
       this.isUserAuthenticated = !!authToken;
     },
-    goHome(){
+    goHome() {
       this.$router.push({ name: "HomeView" });
     },
     loadPayments() {

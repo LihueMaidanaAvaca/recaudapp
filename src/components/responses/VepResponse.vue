@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-bar />
     <v-container fluid fill-height>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="6">
@@ -17,11 +16,10 @@
 </template>
 
 <script>
-import AppBar from '@/components/AppBar.vue'
 
 export default {
   name: 'BoletaResponse',
-  components: { AppBar },
+  components: {  },
   props: { boletaLink: String, vepnumber: String } // Make sure to pass vepnumber as a prop
 }
 </script>
