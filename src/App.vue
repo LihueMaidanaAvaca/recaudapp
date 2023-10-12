@@ -41,7 +41,7 @@
       </v-dialog>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app static absolute temporary right>
+    <v-navigation-drawer v-model="drawer" absolute temporary right>
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item>
