@@ -44,18 +44,17 @@
     <v-navigation-drawer v-model="drawer" app clipped temporary right fixed>
       <v-list nav fixed>
         <v-list-item-group active-class="primary--text text--accent-4">
-          <v-list-item>
-            <v-list-item-title @click="goHome">Home</v-list-item-title>
+          <v-list-item @click="goHome" :disabled="isCurrentView('HomeView')">
+            <v-icon>mdi-home</v-icon>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title @click="loadPayments">Pagos</v-list-item-title>
+          <v-list-item @click="loadPayments" :disabled="isCurrentView('HistoryView')">
+            <v-icon>mdi-notebook</v-icon>
+            <v-list-item-title>Pagos</v-list-item-title>
           </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title @click="showLogoutConfirmationDialog"
-              >Salir</v-list-item-title
-            >
+          <v-list-item @click="showLogoutConfirmationDialog">
+            <v-icon>mdi-logout</v-icon>
+            <v-list-item-title>Salir</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -64,6 +63,14 @@
     <v-main>
       <router-view />
     </v-main>
+
+    <v-footer class="mt-5" color="primary" padless>
+      <v-row justify="center" no-gutters>
+        <v-col class="primary-2 py-4 text-center white--text" cols="12">
+          {{ new Date().getFullYear() }} — <strong>Developed by Siena</strong>
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
@@ -87,6 +94,9 @@ export default Vue.extend({
   },
 
   computed: {
+    isCurrentView() {
+      return (viewName: string) => this.$route.name === viewName;
+    },
     isUserAuthenticated() {
       return !!localStorage.getItem("authToken");
     },
