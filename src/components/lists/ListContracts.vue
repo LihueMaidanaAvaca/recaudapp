@@ -13,7 +13,7 @@
           <v-card-title>{{ contract.title }}</v-card-title>
           <v-card-subtitle>{{ contract.type }}</v-card-subtitle>
           <v-card-text>{{ contract.address }}</v-card-text>
-          <v-card-subtitle>{{ contract.count }}</v-card-subtitle>
+          <!-- <v-card-subtitle>{{ contract.count }}</v-card-subtitle> -->
         </v-card>
       </v-col>
     </v-row>
