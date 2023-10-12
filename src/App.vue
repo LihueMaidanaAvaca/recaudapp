@@ -1,39 +1,68 @@
 <template>
   <v-app>
     <v-app-bar color="primary" height="64" fixed v-if="isUserAuthenticated">
-    <v-avatar color="teal" size="48">
-      <span class="white--text text-h5">T</span>
-    </v-avatar>
+      <v-avatar color="teal" size="48">
+        <span class="white--text text-h5">T</span>
+      </v-avatar>
 
-    <v-spacer></v-spacer>
-    <v-switch
-      v-model="isDarkMode"
-      class="mt-5"
-      color="#0b3f61"
-      :append-icon="isDarkMode ? 'mdi-weather-night' : 'mdi-weather-sunny'"
-    ></v-switch>
-    <div>
-      <v-tabs background-color="primary" show-arrows mobile-breakpoint="xs">
-        <v-tab @click="loadPayments">Pagos</v-tab>
-        <v-tab link to="/home">Home</v-tab>
-        <v-tab @click="showLogoutConfirmationDialog">Salir</v-tab>
-      </v-tabs>
-    </div>
+      <v-spacer></v-spacer>
+      <v-switch
+        v-model="isDarkMode"
+        class="mt-5"
+        color="#0b3f61"
+        :append-icon="isDarkMode ? 'mdi-weather-night' : 'mdi-weather-sunny'"
+      ></v-switch>
+      <v-btn icon @click.stop="drawer = !drawer" v-if="$vuetify.breakpoint.smAndDown">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+      <div>
+        <v-tabs background-color="primary" show-arrows v-if="$vuetify.breakpoint.mdAndUp">
+          <v-tab @click="loadPayments">Pagos</v-tab>
+          <v-tab link to="/home">Home</v-tab>
+          <v-tab @click="showLogoutConfirmationDialog">Salir</v-tab>
+        </v-tabs>
+      </div>
 
-    <!-- Modal de confirmación para cerrar sesión -->
-    <v-dialog v-model="logoutConfirmationDialog" max-width="400">
-      <v-card>
-        <v-card-title class="headline">¿Quieres cerrar sesión?</v-card-title>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" @click="logout">Sí, Cerrar Sesión</v-btn>
-          <v-btn color="error" @click="closeLogoutConfirmationDialog"
-            >Cancelar</v-btn
-          >
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-app-bar>
+      <!-- Modal de confirmación para cerrar sesión -->
+      <v-dialog v-model="logoutConfirmationDialog" max-width="400">
+        <v-card>
+          <v-card-title class="headline">¿Quieres cerrar sesión?</v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" @click="logout">Sí, Cerrar Sesión</v-btn>
+            <v-btn color="error" @click="closeLogoutConfirmationDialog"
+              >Cancelar</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" absolute bottom temporary right>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-title>Foo</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Bar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Fizz</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Buzz</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-main>
       <router-view />
     </v-main>
@@ -49,13 +78,13 @@ export default Vue.extend({
 
   components: {
     // AppBarVue
-
   },
 
   data() {
     return {
       userName: "Telefonica Argentina S.A.",
       logoutConfirmationDialog: false,
+      drawer: false,
     };
   },
 
@@ -139,9 +168,5 @@ export default Vue.extend({
       window.location.reload();
     },
   },
-
-  
-
-  
 });
 </script>
