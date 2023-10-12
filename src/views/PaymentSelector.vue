@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-bar></app-bar>
     <v-container fluid class="col-md-6">
       <v-card class="mb-3" elevation="3">
         <v-card-title>Resumen</v-card-title>
@@ -155,7 +154,6 @@
 
 <script>
 import mockData from "@/components/lists/mockData.json";
-import AppBar from "@/components/AppBar.vue";
 
 export default {
   name: "PaymentSelector",
@@ -168,7 +166,6 @@ export default {
     mensaje: String,
   },
   components: {
-    AppBar,
     // TicketGenerator
   },
 

@@ -6,22 +6,25 @@
       </v-avatar>
 
       <v-spacer></v-spacer>
+
       <v-switch
         v-model="isDarkMode"
         class="mt-5"
         color="#0b3f61"
         :append-icon="isDarkMode ? 'mdi-weather-night' : 'mdi-weather-sunny'"
       ></v-switch>
-      <v-btn icon @click.stop="drawer = !drawer" v-if="$vuetify.breakpoint.smAndDown">
+
+      <v-btn icon @click="toggleDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
-      <div>
-        <v-tabs background-color="primary" show-arrows v-if="$vuetify.breakpoint.mdAndUp">
+
+      <!-- <div>
+        <v-tabs background-color="primary" show-arrows>
           <v-tab @click="loadPayments">Pagos</v-tab>
           <v-tab link to="/home">Home</v-tab>
           <v-tab @click="showLogoutConfirmationDialog">Salir</v-tab>
         </v-tabs>
-      </div>
+      </div> -->
 
       <!-- Modal de confirmación para cerrar sesión -->
       <v-dialog v-model="logoutConfirmationDialog" max-width="400">
@@ -38,26 +41,21 @@
       </v-dialog>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary right>
+    <v-navigation-drawer v-model="drawer" app static absolute temporary right>
       <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        >
+        <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
+            <v-list-item-title @click="goHome">Home</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
+            <v-list-item-title @click="loadPayments">Pagos</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
+            <v-list-item-title @click="showLogoutConfirmationDialog"
+              >Salir</v-list-item-title
+            >
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -117,10 +115,17 @@ export default Vue.extend({
   },
 
   methods: {
+    toggleDrawer() {
+      this.drawer = !this.drawer;
+    },
+
     checkAuthentication() {
       const authToken = localStorage.getItem("authToken");
       console.log("authToken:", !!authToken);
       this.isUserAuthenticated = !!authToken;
+    },
+    goHome(){
+      this.$router.push({ name: "HomeView" });
     },
     loadPayments() {
       // Verificar si los pagos ya están guardados en el almacenamiento local
