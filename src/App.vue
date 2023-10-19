@@ -48,9 +48,16 @@
             <v-icon>mdi-home</v-icon>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-          <v-list-item @click="loadPayments" :disabled="isCurrentView('HistoryView')">
+          <v-list-item
+            @click="loadPayments"
+            :disabled="isCurrentView('HistoryView')"
+          >
             <v-icon>mdi-notebook</v-icon>
             <v-list-item-title>Pagos</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="deleteValidCuit">
+            <v-icon>mdi-swap-horizontal</v-icon>
+            <v-list-item-title>Cambiar Cuit</v-list-item-title>
           </v-list-item>
           <v-list-item @click="showLogoutConfirmationDialog">
             <v-icon>mdi-logout</v-icon>
@@ -125,6 +132,12 @@ export default Vue.extend({
   },
 
   methods: {
+    deleteValidCuit() {
+      // Borra el token validCuit del localStorage
+      localStorage.removeItem("validCuit");
+      window.location.reload();
+    },
+
     toggleDrawer() {
       this.drawer = !this.drawer;
     },

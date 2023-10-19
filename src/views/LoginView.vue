@@ -90,7 +90,7 @@ export default {
             localStorage.setItem("authToken", authToken);
 
             // Redirigir a la página de inicio después de un inicio de sesión exitoso
-            this.$router.push("/home");
+            this.$router.push("/cuit");
             window.location.reload()
           } else {
             // Manejar caso de autenticación fallida si es necesario
@@ -102,8 +102,8 @@ export default {
         // Manejar errores de autenticación si es necesario
       }
     },
-    redirectToHome() {
-      this.$router.push("/home"); // Cambia '/home' por tu ruta de inicio
+    redirectToCuit() {
+      this.$router.push("/cuit"); 
     },
   },
 };
