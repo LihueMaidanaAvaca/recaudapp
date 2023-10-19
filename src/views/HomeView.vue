@@ -6,7 +6,7 @@
           <h2 class="text-center">Ingrese el CUIT</h2>
           <v-form @submit.prevent="acceptCuit">
             <v-text-field v-model="cuit" label="CUIT" :type="'number'"></v-text-field>
-            <v-btn :disabled="!isValidCuit(cuit)">Aceptar</v-btn>
+            <v-btn @click="acceptCuit" :disabled="!isValidCuit(cuit)">Aceptar</v-btn>
           </v-form>
         </v-sheet>
       </v-col>
